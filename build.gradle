@@ -30,9 +30,6 @@ repositories {
     maven {
         url = "https://repo.spongepowered.org/maven"
     }
-    maven {
-        url 'https://maven.cleanroommc.com'
-    }
     flatDir {
         dirs 'libs'
     }
@@ -46,16 +43,6 @@ dependencies {
     implementation name: 'journeymap-1.12.2-5.7.1p3'
 
     testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    //annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
-    //annotationProcessor 'com.google.guava:guava:32.1.2-jre'
-    //annotationProcessor 'com.google.code.gson:gson:2.8.9'
-    //implementation ('zone.rong:mixinbooter:10.0') {
-    //    transitive = false
-    //}
-    //annotationProcessor ('zone.rong:mixinbooter:10.0') {
-    //    transitive = false
-    //}
 }
 
 mixin {
@@ -95,6 +82,4 @@ jar {
     )
 }
 
-//When Forge 1.12 loads mods from a directory that's been put on the classpath, it expects to find resources in the same directory.
-//Default Gradle behavior puts resources in ./build/resources/main instead of ./build/classes/main/java. Let's change that.
 sourceSets.all { it.output.resourcesDir = it.output.classesDirs.getFiles().iterator().next() }
