@@ -33,22 +33,39 @@ repositories {
     flatDir {
         dirs 'libs'
     }
+    maven {
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        url 'https://maven.cleanroommc.com'
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:1.12.2-14.23.5.2859"
 
-    implementation 'org.spongepowered:mixin:0.8.5'
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    implementation name: 'journeymap-1.12.2-5.7.1p3'
+    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+    annotationProcessor 'com.google.guava:guava:32.1.2-jre'
+    annotationProcessor 'com.google.code.gson:gson:2.8.9'
+//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation ('zone.rong:mixinbooter:10.0') {
+        transitive = false
+    }
+    annotationProcessor ('zone.rong:mixinbooter:10.0') {
+        transitive = false
+    }
+
+//    implementation 'org.spongepowered:mixin:0.8.5'
+
+    implementation fg.deobf("curse.maven:journeymap-32274:5172461")
+//    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
-mixin {
-    config("mixins.journeymapfix.json")
-    defaultObfuscationEnv("notch")
-}
+//mixin {
+//    config("mixins.journeymapfix.json")
+//    defaultObfuscationEnv("notch")
+//}
 
 minecraft {
     mappings channel: "stable", version: "39-1.12"
@@ -78,7 +95,6 @@ jar {
     manifest.attributes(
             'ForceLoadAsMod': 'true',
             'FMLCorePluginContainsFMLMod': 'true',
-            'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker'
     )
 }
 

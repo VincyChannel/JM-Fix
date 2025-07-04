@@ -1,5 +1,6 @@
 package com.vincychannel.journeymapfix.mixin;
 
+import journeymap.client.render.map.Tile;
 import journeymap.client.ui.fullscreen.Fullscreen;
 import journeymap.client.render.map.GridRenderer;
 
@@ -12,10 +13,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Fullscreen.class)
+@Mixin(value = Fullscreen.class, remap = false)
 public class MixinFullscreenMapGui {
     @Final
-    @Shadow(remap = false)
+    @Shadow()
     static GridRenderer gridRenderer;
 
     @Inject(method = "<init>", at = @At("RETURN"))
@@ -34,11 +35,19 @@ public class MixinFullscreenMapGui {
     private void journeymapfix$fixGridSize() {
         int screenWidth = Minecraft.getMinecraft().displayWidth;
         int screenHeight = Minecraft.getMinecraft().displayHeight;
-        int tileSize = 512;
+        int gridSize = Math.max(screenWidth, screenHeight) / Tile.TILESIZE;
 
-        int gridSize = Math.max(screenWidth, screenHeight) / tileSize;
-        if (gridSize < 1) gridSize = 1;
-
+        while ((gridSize * Tile.TILESIZE) < screenWidth)
+        {
+            gridSize++;
+        }
+        //add one for good measure
+        gridSize++;
+        //assure gridSize is odd
+        if (gridSize % 2 == 0)
+        {
+            gridSize++;
+        }
         gridRenderer.setGridSize(gridSize);
     }
 }

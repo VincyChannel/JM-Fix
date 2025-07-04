@@ -12,10 +12,10 @@
       "logoFile": "",
       "screenshots": [],
       "dependencies": [
-        "JourneyMap"
+        "journeymap"
       ],
       "requiredMods": [
-        "JourneyMap"
+        "journeymap"
       ]
     }
 ]
