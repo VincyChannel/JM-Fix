@@ -8,8 +8,7 @@ import org.apache.logging.log4j.Logger;
 @Mod(
     modid = JourneyMapFix.MODID,
     name = JourneyMapFix.NAME,
-    version = JourneyMapFix.VERSION,
-    dependencies = "required-after:journeymap"
+    version = JourneyMapFix.VERSION
 )
 public class JourneyMapFix {
     public static final String MODID = "journeymapfix";

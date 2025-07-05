@@ -1,10 +1,21 @@
 {
   "required": true,
   "package": "com.vincychannel.journeymapfix.mixin",
-  "refmap": "mixins.jmfix.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "target": "@env(DEFAULT)",
-  "mixins": ["MixinFullscreenMapGui"],
-  "client": [],
-  "server": []
+  "mixins": [
+    "client.MixinClientFix",
+    "client.render.MixinRenderGrid",
+    "server.MixinSendPlayerData",
+    "MixinServerCFG",
+    "old.MixinServerConfig",
+    "client.render.TilePosInvoker"
+  ],
+  "client": [
+    "client.MixinJMClient",
+    "client.config.MixinPlayerConfigControllerClient"
+  ],
+  "server": [
+    "server.config.MixinPlayerConfigControllerServer"
+  ]
 }

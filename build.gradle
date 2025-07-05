@@ -30,14 +30,14 @@ repositories {
     maven {
         url = "https://repo.spongepowered.org/maven"
     }
-    flatDir {
-        dirs 'libs'
-    }
     maven {
         url "https://www.cursemaven.com"
     }
     maven {
         url 'https://maven.cleanroommc.com'
+    }
+    flatDir {
+        dirs 'libs'
     }
 }
 
@@ -47,7 +47,6 @@ dependencies {
     annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
     annotationProcessor 'com.google.guava:guava:32.1.2-jre'
     annotationProcessor 'com.google.code.gson:gson:2.8.9'
-//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation ('zone.rong:mixinbooter:10.0') {
         transitive = false
@@ -56,10 +55,7 @@ dependencies {
         transitive = false
     }
 
-//    implementation 'org.spongepowered:mixin:0.8.5'
-
     implementation fg.deobf("curse.maven:journeymap-32274:5172461")
-//    testAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 //mixin {
