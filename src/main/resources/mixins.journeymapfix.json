@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "com.vincychannel.journeymapfix.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "common.network.MixinGetAllCFGs",
+    "common.network.MixinUpdateAllCFG"
+  ],
+  "client": [
+    "client.MixinJMClient",
+    "client.config.MixinPlayerCFGControllerClient",
+    "client.render.MixinRenderGrid",
+    "client.render.TilePosInvoker",
+    "client.render.draw.MixinDrawEntityStep",
+    "client.ui.MixinRadarOpt",
+    "client.ui.ServerOptionsManagerInvoker",
+    "client.ui.fullscreen.MixinWaypointLayer"
+  ],
+  "server": [
+    "server.MixinSendPlayerData",
+    "server.config.MixinPlayerConfigControllerServer",
+    "server.config.MixinServerCFG"
+  ]
+}
