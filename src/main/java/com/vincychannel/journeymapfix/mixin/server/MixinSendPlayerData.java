@@ -7,6 +7,7 @@ import journeymap.server.events.ForgeEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,13 +19,13 @@ import java.util.UUID;
 @Mixin(ForgeEvents.class)
 public abstract class MixinSendPlayerData {
 
-    @Shadow protected abstract JsonObject buildJsonPlayer(EntityPlayer playerMp, boolean receiverOp);
+    @Shadow(remap = false) protected abstract JsonObject buildJsonPlayer(EntityPlayer playerMp, boolean receiverOp);
 
-    @Shadow protected abstract void sendPlayerList(List<JsonObject> allPlayers, EntityPlayerMP player);
+    @Shadow(remap = false) protected abstract void sendPlayerList(List<JsonObject> allPlayers, EntityPlayerMP player);
 
     /**
-     * @author Vincenzo Roberti
-     * @reason Fixing Hide Sneaking Entities in multiplayer servers
+     * @author VincyChannel
+     * @reason Fixing Hide Sneaking Entities in multiplayer servers with expanded radar enabled
      */
     @Overwrite(remap = false)
     private void sendPlayerTrackingData(EntityPlayerMP entityPlayerMP) {

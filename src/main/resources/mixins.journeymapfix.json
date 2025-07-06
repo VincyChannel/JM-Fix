@@ -4,18 +4,22 @@
   "compatibilityLevel": "JAVA_8",
   "target": "@env(DEFAULT)",
   "mixins": [
-    "client.MixinClientFix",
-    "client.render.MixinRenderGrid",
-    "server.MixinSendPlayerData",
-    "MixinServerCFG",
-    "old.MixinServerConfig",
-    "client.render.TilePosInvoker"
+    "common.network.MixinGetAllCFGs",
+    "common.network.MixinUpdateAllCFG"
   ],
   "client": [
     "client.MixinJMClient",
-    "client.config.MixinPlayerConfigControllerClient"
+    "client.config.MixinPlayerCFGControllerClient",
+    "client.render.MixinRenderGrid",
+    "client.render.TilePosInvoker",
+    "client.render.draw.MixinDrawEntityStep",
+    "client.ui.MixinRadarOpt",
+    "client.ui.ServerOptionsManagerInvoker",
+    "client.ui.fullscreen.MixinWaypointLayer"
   ],
   "server": [
-    "server.config.MixinPlayerConfigControllerServer"
+    "server.MixinSendPlayerData",
+    "server.config.MixinPlayerConfigControllerServer",
+    "server.config.MixinServerCFG"
   ]
 }

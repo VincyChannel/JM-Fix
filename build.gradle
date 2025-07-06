@@ -2,9 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven { url = "https://maven.minecraftforge.net/" }
-        maven {
-            url = "https://repo.spongepowered.org/maven"
-        }
+        maven { url = "https://repo.spongepowered.org/maven" }
     }
 
     dependencies {
@@ -42,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:1.12.2-14.23.5.2859"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
     annotationProcessor 'com.google.guava:guava:32.1.2-jre'
@@ -58,13 +56,8 @@ dependencies {
     implementation fg.deobf("curse.maven:journeymap-32274:5172461")
 }
 
-//mixin {
-//    config("mixins.journeymapfix.json")
-//    defaultObfuscationEnv("notch")
-//}
-
 minecraft {
-    mappings channel: "stable", version: "39-1.12"
+    mappings channel: findProperty("mapping_channel"), version: findProperty("mapping_version")
 
     runs {
         "client" {
@@ -80,14 +73,22 @@ minecraft {
 }
 
 processResources {
-    inputs.property "version", project.version
-
     filesMatching("mcmod.info") {
-        expand "version": project.version
+        expand([
+            "mod_id"            : findProperty("mod_id"),
+            "mod_name"          : findProperty("mod_name"),
+            "mod_description"   : findProperty("mod_description"),
+            "mod_version"       : findProperty("mod_version"),
+            "minecraft_version" : findProperty("minecraft_version"),
+            "mod_author"        : findProperty("mod_author")
+        ])
     }
 }
 
 jar {
+    archiveBaseName.set(findProperty("mod_name"))
+    archiveVersion.set(findProperty("minecraft_version") + "-" + findProperty("mod_version"))
+
     manifest.attributes(
             'ForceLoadAsMod': 'true',
             'FMLCorePluginContainsFMLMod': 'true',

@@ -7,8 +7,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(TilePos.class)
 public interface TilePosInvoker {
+
     @Invoker("<init>")
     static TilePos journeymapfix$create(int x, int z) {
-        throw new AssertionError(); // verrà sostituito da Mixin
+        throw new AssertionError();
     }
 }

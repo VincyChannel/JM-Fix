@@ -1,5 +1,7 @@
 package com.vincychannel.journeymapfix.mixin.client.render;
 
+import com.vincychannel.journeymapfix.config.ModConfig;
+
 import journeymap.client.render.map.GridRenderer;
 import journeymap.client.render.map.Tile;
 import journeymap.client.render.map.TilePos;
@@ -15,17 +17,25 @@ import java.util.TreeMap;
 public abstract class MixinRenderGrid {
 
     @Shadow @Final private TreeMap<TilePos, Tile> grid;
+
     @Shadow protected abstract Tile findNeighbor(Tile tile, TilePos pos);
+
     @Shadow private int gridSize;
 
     /**
-     * @author Vincenzo Roberti
-     * @reason Fixing Fullscreen Map Bug
+     * @author VincyChannel
+     * @reason Fixing Fullscreen Map Grid Bug
      */
     @Overwrite
     private void populateGrid(Tile centerTile) {
+        int value = this.gridSize;
+
+        if (ModConfig.client.fixFullscreenBug) {
+            value = 10;
+        }
+
         int endRow = (this.gridSize - 1) / 2;
-        int endCol = (10 - 1) / 2;
+        int endCol = (value - 1) / 2; // Setted a static value TODO: Change this to dynamic value
         int startRow = -endRow;
         int startCol = -endCol;
 
