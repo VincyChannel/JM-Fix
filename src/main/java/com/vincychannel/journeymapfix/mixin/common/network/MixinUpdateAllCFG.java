@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Objects;
 
@@ -60,38 +61,33 @@ public abstract class MixinUpdateAllCFG extends CompressedPacket {
                     }
 
                     if (global.get("hide_sneaking_entities") != null) {
-                        boolean oldValue = ((IPermissionPropertiesAccessor) properties).
-                                getHideSneakingEntities().get();
+                        boolean oldValue = ((IPermissionPropertiesAccessor) properties)
+                                .getHideSneakingEntities().get();
+                        boolean newValue = global.get("hide_sneaking_entities").getAsBoolean();
 
-                        if (global.get("hide_sneaking_entities").getAsBoolean() != oldValue) {
+                        if (newValue != oldValue) {
                             ((IPermissionPropertiesAccessor) properties)
-                                    .getHideSneakingEntities()
-                                    .set(global.get("hide_sneaking_entities").getAsBoolean());
+                                    .getHideSneakingEntities().set(newValue);
 
-                            if (ModConfig.server.announceHideSneakingEntities) {
-                                TextComponentString textMsg = new TextComponentString("§2[JourneyMap Fix] §b"
-                                        + player.getName()
-                                        + " §ehas changed the config value: "
-                                        + "§cHide Sneaking Entities §6(New value: §d" + !oldValue + "§6)");
-
-                                synchronized (properties) {
-                                    for (EntityPlayerMP p : Objects.requireNonNull(player.getServer()).getPlayerList()
-                                            .getPlayers()) {
-                                        if (Objects.equals(p, player) || !JourneymapServer.isOp(p)) {
-                                            continue;
-                                        }
-
-                                        p.sendMessage(textMsg);
-                                    }
-
-                                    player.getServer().sendMessage(textMsg);
-                                }
+                            if (ModConfig.server.announceChangedCFGMSG) {
+                                journeyMapFix$sendConfigChangeMessage(player, "Hide Sneaking Entities", newValue);
                             }
                         }
                     }
 
                     if (global.get("hide_invisible_players") != null) {
-                        ((IPermissionPropertiesAccessor) properties).getHideInvisiblePlayers().set(global.get("hide_invisible_players").getAsBoolean());
+                        boolean oldValue = ((IPermissionPropertiesAccessor) properties)
+                                .getHideInvisiblePlayers().get();
+                        boolean newValue = global.get("hide_invisible_players").getAsBoolean();
+
+                        if (newValue != oldValue) {
+                            ((IPermissionPropertiesAccessor) properties)
+                                    .getHideInvisiblePlayers().set(newValue);
+
+                            if (ModConfig.server.announceChangedCFGMSG) {
+                                journeyMapFix$sendConfigChangeMessage(player, "Hide Invisible Players", newValue);
+                            }
+                        }
                     }
                 }
 
@@ -124,5 +120,24 @@ public abstract class MixinUpdateAllCFG extends CompressedPacket {
         }
 
         return null;
+    }
+
+    @Unique
+    private void journeyMapFix$sendConfigChangeMessage(EntityPlayerMP player, String configName, boolean newValue) {
+        TextComponentString textMsg = new TextComponentString("§2[JourneyMap Fix] §b"
+                + player.getName()
+                + " §ehas changed the config value: "
+                + "§c" + configName + " §6(New value: §d" + newValue + "§6)");
+
+        synchronized (player.getServer()) {
+            for (EntityPlayerMP p : player.getServer().getPlayerList().getPlayers()) {
+                if (Objects.equals(p, player) || !JourneymapServer.isOp(p)) {
+                    continue;
+                }
+                p.sendMessage(textMsg);
+            }
+
+            player.getServer().sendMessage(textMsg);
+        }
     }
 }

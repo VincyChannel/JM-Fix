@@ -47,8 +47,8 @@ public class ModConfig {
         public boolean enableHideInvisiblePlayers = true;
 
         @Name("Send changed config value messages")
-        @Comment("If enabled, OP players (and server console) will receive a message when an admin changes the 'Hide Sneaking Entities' config value")
+        @Comment("If enabled, OP players (and server console) will receive a message when an admin changes the 'Hide Sneaking Entities' or 'Hide Invisible Players' config value")
         @RequiresMcRestart
-        public boolean announceHideSneakingEntities = false;
+        public boolean announceChangedCFGMSG = false;
     }
 }
