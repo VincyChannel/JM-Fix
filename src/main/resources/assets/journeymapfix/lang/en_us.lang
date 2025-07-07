@@ -1,2 +1,5 @@
-jm.server.edit.hide.entities=Hide Sneaking Entities
-jm.server.edit.hide.entities.tooltip=§1[Enable/Disable]§f: Whether to hide creatures that are trying to sneak (crouch). (This will force clients to hide sneaking entities when enabled)
+jm.server.edit.hide_sneaking_entities=Hide Sneaking Entities
+jm.server.edit.hide_sneaking_entities.tooltip=§1[Enable/Disable]§f: Whether to hide creatures that are trying to sneak (crouch). (This will force clients to hide sneaking entities when enabled)
+
+jm.server.edit.hide_invisible_entities=Hide Invisible Entities
+jm.server.edit.hide_invisible_entities.tooltip=§1[Enable/Disable]§f: Whether to hide creatures that are invisible.

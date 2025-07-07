@@ -20,6 +20,7 @@ public class ModConfig {
 
         @Name("Enable Fullscreen Map Grid BugFix")
         @Comment("Fixes the annoying bug with the grid, when the map is opened in fullscreen (Default: true) \n§c[Requires Restart]")
+        @RequiresMcRestart
         public boolean fixFullscreenBug = true;
 
         @Name("Disable Waypoint creation with left click")
@@ -37,10 +38,17 @@ public class ModConfig {
 
         @Name("Enable Hide Sneaking Entities Config")
         @Comment("Enable the config property \"Hide Sneaking Entities\" (Default: true) \n§c[Requires Restart]")
+        @RequiresMcRestart
         public boolean enableHideSneakingEntities = true;
+
+        @Name("Enable Hide Invisible Entities Config")
+        @Comment("Enable the config property \"Hide Sneaking Entities\" (Default: true) \n§c[Requires Restart]")
+        @RequiresMcRestart
+        public boolean enableHideInvisibleEntities = true;
 
         @Name("Send changed config value messages")
         @Comment("If enabled, OP players (and server console) will receive a message when an admin changes the 'Hide Sneaking Entities' config value")
+        @RequiresMcRestart
         public boolean announceHideSneakingEntities = false;
     }
 }

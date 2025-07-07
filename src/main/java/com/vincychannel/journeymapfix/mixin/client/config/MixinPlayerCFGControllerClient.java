@@ -51,6 +51,12 @@ public abstract class MixinPlayerCFGControllerClient {
                         .journeymapfix$setHideSneakingEntities(settings.get("hide_sneaking_entities").getAsBoolean());
                 DataCache.INSTANCE.purge(); // Refresh All Cached Date, for reloading all the DrawStepEntity objects
             }
+
+            if (settings.get("hide_invisible_entities") != null) {
+                ((IJourneyMapClientAccessor) jmClient)
+                        .journeymapfix$setHideInvisibleEntities(settings.get("hide_invisible_entities").getAsBoolean());
+                DataCache.INSTANCE.purge(); // Refresh All Cached Date, for reloading all the DrawStepEntity objects
+            }
         }
 
         String dimProperties = response.getAsJson().get("dim").getAsString();
