@@ -46,17 +46,24 @@ public abstract class MixinPlayerCFGControllerClient {
             }
 
             // Added hide sneaking entities force config from server configs
+            boolean value;
             if (settings.get("hide_sneaking_entities") != null) {
-                ((IJourneyMapClientAccessor) jmClient)
-                        .journeymapfix$setHideSneakingEntities(settings.get("hide_sneaking_entities").getAsBoolean());
+                value = settings.get("hide_sneaking_entities").getAsBoolean();
                 DataCache.INSTANCE.purge(); // Refresh All Cached Date, for reloading all the DrawStepEntity objects
+            } else {
+                value = false;
             }
+            ((IJourneyMapClientAccessor) jmClient)
+                    .journeymapfix$setHideSneakingEntities(value);
 
-            if (settings.get("hide_invisible_entities") != null) {
-                ((IJourneyMapClientAccessor) jmClient)
-                        .journeymapfix$setHideInvisibleEntities(settings.get("hide_invisible_entities").getAsBoolean());
+            if (settings.get("hide_invisible_players") != null) {
+                value = settings.get("hide_invisible_players").getAsBoolean();
                 DataCache.INSTANCE.purge(); // Refresh All Cached Date, for reloading all the DrawStepEntity objects
+            } else {
+                value = false;
             }
+            ((IJourneyMapClientAccessor) jmClient)
+                    .journeymapfix$setHideInvisiblePlayers(value);
         }
 
         String dimProperties = response.getAsJson().get("dim").getAsString();

@@ -25,7 +25,7 @@ public abstract class MixinGetAllCFGs {
 
     /**
      * @author VincyChannel
-     * @reason Added new config entries (hideSneakingEntities and hideInvisibleEntities)
+     * @reason Added new config entries (hideSneakingEntities and hideInvisiblePlayers)
      */
     @Overwrite(remap = false)
     private JsonObject collectServerSettings() {
@@ -51,8 +51,8 @@ public abstract class MixinGetAllCFGs {
             globalConfig.addProperty("hide_sneaking_entities", ((IPermissionPropertiesAccessor) globalProperties).getHideSneakingEntities().get());
         }
 
-        if (ModConfig.server.enableHideInvisibleEntities && FMLCommonHandler.instance().getSide() == Side.SERVER) {
-            globalConfig.addProperty("hide_invisible_entities", ((IPermissionPropertiesAccessor) globalProperties).getHideInvisibleEntities().get());
+        if (ModConfig.server.enableHideInvisiblePlayers && FMLCommonHandler.instance().getSide() == Side.SERVER) {
+            globalConfig.addProperty("hide_invisible_players", ((IPermissionPropertiesAccessor) globalProperties).getHideInvisiblePlayers().get());
         }
 
         this.getCommonProperties(globalProperties, globalConfig);

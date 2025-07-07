@@ -26,7 +26,7 @@ public abstract class MixinDrawEntityStep {
 
     @Unique boolean hideInvisible;
 
-    @Shadow(remap = false) boolean hideSneaks;
+    @Shadow() boolean hideSneaks;
 
     @Shadow(remap = false) WeakReference<EntityLivingBase> entityLivingRef;
 
@@ -45,7 +45,7 @@ public abstract class MixinDrawEntityStep {
     private void changeHideSnE(CallbackInfo ci) {
         // First check the settings isHideSneaksEnabled got from the server and stored into client
         boolean isHideSneaksEnabled = ((IJourneyMapClientAccessor) Journeymap.getClient()).journeymapfix$getHideSneakingEntities();
-        boolean isHideInvEnabled = ((IJourneyMapClientAccessor) Journeymap.getClient()).journeymapfix$getHideInvisibleEntities();
+        boolean isHideInvEnabled = ((IJourneyMapClientAccessor) Journeymap.getClient()).journeymapfix$getHideInvisiblePlayers();
 
         // If the server doesn't force the hiding sneaking entities then read the client config isHideSneaksEnabled
         if (!isHideSneaksEnabled) {

@@ -41,10 +41,10 @@ public class ModConfig {
         @RequiresMcRestart
         public boolean enableHideSneakingEntities = true;
 
-        @Name("Enable Hide Invisible Entities Config")
-        @Comment("Enable the config property \"Hide Sneaking Entities\" (Default: true) \n§c[Requires Restart]")
+        @Name("Enable Hide Invisible Players Config")
+        @Comment("Enable the config property \"Hide Invisible Players\" (Default: true) \n§c[Requires Restart]")
         @RequiresMcRestart
-        public boolean enableHideInvisibleEntities = true;
+        public boolean enableHideInvisiblePlayers = true;
 
         @Name("Send changed config value messages")
         @Comment("If enabled, OP players (and server console) will receive a message when an admin changes the 'Hide Sneaking Entities' config value")

@@ -20,7 +20,7 @@ public class MixinJMClient implements IJourneyMapClientAccessor {
     }
 
     @Override
-    public void journeymapfix$setHideInvisibleEntities(boolean value) {
+    public void journeymapfix$setHideInvisiblePlayers(boolean value) {
         this.journeymapfix$hideInvEnabled = value;
     }
 
@@ -30,7 +30,7 @@ public class MixinJMClient implements IJourneyMapClientAccessor {
     }
 
     @Override
-    public boolean journeymapfix$getHideInvisibleEntities() {
+    public boolean journeymapfix$getHideInvisiblePlayers() {
         return this.journeymapfix$hideInvEnabled;
     }
 }

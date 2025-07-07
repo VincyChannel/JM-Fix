@@ -21,7 +21,7 @@ public class MixinServerCFG implements IPermissionPropertiesAccessor {
 
     @Unique public BooleanField hideSneakingEntities;
 
-    @Unique public BooleanField hideInvisibleEntities;
+    @Unique public BooleanField hideInvisiblePlayers;
 
     @Inject(method = "<init>", at = @At("RETURN"), remap = false)
     private void changeGlbProp(CallbackInfo ci) {
@@ -29,8 +29,8 @@ public class MixinServerCFG implements IPermissionPropertiesAccessor {
             this.hideSneakingEntities = new BooleanField(ServerCategory.Radar, "Hide Sneaking Entities", true);
         }
 
-        if (ModConfig.server.enableHideInvisibleEntities || FMLCommonHandler.instance().getSide() == Side.SERVER) {
-            this.hideInvisibleEntities = new BooleanField(ServerCategory.Radar, "Hide Invisible Entities", true);
+        if (ModConfig.server.enableHideInvisiblePlayers || FMLCommonHandler.instance().getSide() == Side.SERVER) {
+            this.hideInvisiblePlayers = new BooleanField(ServerCategory.Radar, "Hide Invisible Players", true);
         }
     }
 
@@ -40,7 +40,7 @@ public class MixinServerCFG implements IPermissionPropertiesAccessor {
     }
 
     @Override
-    public BooleanField getHideInvisibleEntities() {
-        return this.hideInvisibleEntities;
+    public BooleanField getHideInvisiblePlayers() {
+        return this.hideInvisiblePlayers;
     }
 }

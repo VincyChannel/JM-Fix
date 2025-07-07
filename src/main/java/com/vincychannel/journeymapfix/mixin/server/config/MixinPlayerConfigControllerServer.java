@@ -50,9 +50,9 @@ public abstract class MixinPlayerConfigControllerServer {
                     ((IPermissionPropertiesAccessor) props.getGlobalProperties()).getHideSneakingEntities().get());
         }
 
-        if (ModConfig.server.enableHideInvisibleEntities) {
-            settings.addProperty("hide_invisible_entities",
-                    ((IPermissionPropertiesAccessor) props.getGlobalProperties()).getHideInvisibleEntities().get());
+        if (ModConfig.server.enableHideInvisiblePlayers) {
+            settings.addProperty("hide_invisible_players",
+                    ((IPermissionPropertiesAccessor) props.getGlobalProperties()).getHideInvisiblePlayers().get());
         }
 
         config.add("settings", settings);
