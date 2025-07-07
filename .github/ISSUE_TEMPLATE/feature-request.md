@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
-title: "[Feature Request] "
+title: "[Feature Request] <put here a small description of the feature>"
 labels: enhancement
 assignees: VincyChannel
 
