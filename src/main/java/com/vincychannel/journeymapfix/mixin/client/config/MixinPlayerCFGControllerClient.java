@@ -55,6 +55,15 @@ public abstract class MixinPlayerCFGControllerClient {
             }
             ((IJourneyMapClientAccessor) jmClient)
                     .journeymapfix$setHideSneakingEntities(value);
+
+            if (settings.get("hide_invisible_players") != null) {
+                value = settings.get("hide_invisible_players").getAsBoolean();
+                DataCache.INSTANCE.purge(); // Refresh All Cached Date, for reloading all the DrawStepEntity objects
+            } else {
+                value = false;
+            }
+            ((IJourneyMapClientAccessor) jmClient)
+                    .journeymapfix$setHideInvisiblePlayers(value);
         }
 
         String dimProperties = response.getAsJson().get("dim").getAsString();

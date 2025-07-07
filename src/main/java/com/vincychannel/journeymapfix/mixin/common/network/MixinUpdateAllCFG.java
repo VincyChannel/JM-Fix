@@ -4,8 +4,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import com.vincychannel.journeymapfix.access.IPermissionPropertiesAccessor;
-
 import com.vincychannel.journeymapfix.config.ModConfig;
+
 import journeymap.common.network.UpdateAllConfigs;
 import journeymap.common.network.impl.CompressedPacket;
 import journeymap.common.network.impl.Response;
@@ -14,8 +14,6 @@ import journeymap.server.JourneymapServer;
 import journeymap.server.properties.*;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.management.UserListOps;
-import net.minecraft.server.management.UserListOpsEntry;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
@@ -32,7 +30,7 @@ public abstract class MixinUpdateAllCFG extends CompressedPacket {
 
     /**
      * @author VincyChannel
-     * @reason Added new config entry (hideSneakingEntities)
+     * @reason Added new config entries (hideSneakingEntities and hideInvisiblePlayers)
      */
     @Overwrite(remap = false)
     protected JsonObject onServer(Response response) {
@@ -90,6 +88,10 @@ public abstract class MixinUpdateAllCFG extends CompressedPacket {
                                 }
                             }
                         }
+                    }
+
+                    if (global.get("hide_invisible_players") != null) {
+                        ((IPermissionPropertiesAccessor) properties).getHideInvisiblePlayers().set(global.get("hide_invisible_players").getAsBoolean());
                     }
                 }
 

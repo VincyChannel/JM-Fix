@@ -28,7 +28,7 @@ public abstract class MixinPlayerConfigControllerServer {
 
     /**
      * @author VincyChannel
-     * @reason Sending new settings property "hide_sneaking_entities"
+     * @reason Sending new settings properties "hide_sneaking_entities and hide_invisible_entities"
      */
     @Overwrite
     public JsonObject getPlayerConfig(EntityPlayerMP player) {
@@ -48,6 +48,11 @@ public abstract class MixinPlayerConfigControllerServer {
         if (ModConfig.server.enableHideSneakingEntities) {
             settings.addProperty("hide_sneaking_entities",
                     ((IPermissionPropertiesAccessor) props.getGlobalProperties()).getHideSneakingEntities().get());
+        }
+
+        if (ModConfig.server.enableHideInvisiblePlayers) {
+            settings.addProperty("hide_invisible_players",
+                    ((IPermissionPropertiesAccessor) props.getGlobalProperties()).getHideInvisiblePlayers().get());
         }
 
         config.add("settings", settings);
