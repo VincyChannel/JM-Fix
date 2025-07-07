@@ -66,7 +66,8 @@ public abstract class MixinDrawEntityStep {
             EntityLivingBase entityLiving = (EntityLivingBase)this.entityLivingRef.get();
             if (pass == DrawStep.Pass.Object) {
                 if (entityLiving == null || entityLiving.isDead || entityLiving.isInvisibleToPlayer(this.minecraft.player) || !entityLiving.addedToChunk || this.hideSneaks && entityLiving.isSneaking()
-                        || this.hideInvisible && (entityLiving.isInvisible() || entityLiving instanceof EntityPlayer && this.minecraft.world.getPlayerEntityByName(entityLiving.getName()).isInvisible())) {
+                        || this.hideInvisible && (entityLiving.isInvisible() || entityLiving instanceof EntityPlayer && this.minecraft.world.getPlayerEntityByName(entityLiving.getName()) != null
+                        && this.minecraft.world.getPlayerEntityByName(entityLiving.getName()).isInvisible())) {
                     this.screenPosition = null;
                     return;
                 }
