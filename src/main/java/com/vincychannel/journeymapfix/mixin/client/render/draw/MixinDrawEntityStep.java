@@ -26,7 +26,7 @@ public abstract class MixinDrawEntityStep {
 
     @Unique boolean hideInvisible;
 
-    @Shadow() boolean hideSneaks;
+    @Shadow(remap = false) boolean hideSneaks;
 
     @Shadow(remap = false) WeakReference<EntityLivingBase> entityLivingRef;
 
