@@ -65,7 +65,7 @@ public abstract class MixinRadarOpt implements Draw {
         }
 
         if (this.properties.get("hide_invisible_players") != null) {
-            CheckBox hideEnt = this.checkBox("jm.server.edit.hide_invisible_entities", "hide_invisible_players", this.properties);
+            CheckBox hideEnt = this.checkBox("jm.server.edit.hide_invisible_players", "hide_invisible_players", this.properties);
             checkBoxes.add(hideEnt);
         }
 

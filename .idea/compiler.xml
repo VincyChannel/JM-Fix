@@ -15,7 +15,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.33.0/de2b60b62da487644fc11f734e73c8b0b431238f/checker-qual-3.33.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.18.0/89b684257096f548fa39a7df9fdaa409d4d4df91/error_prone_annotations-2.18.0.jar" />
         </processorPath>
-        <module name="journeymapfix.main" />
+        <module name="JourneyMapFix.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

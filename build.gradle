@@ -59,17 +59,17 @@ dependencies {
 minecraft {
     mappings channel: findProperty("mapping_channel"), version: findProperty("mapping_version")
 
-    runs {
-        "client" {
-            workingDirectory file("./run")
-            mods { "${project.name}" { source sourceSets.main } }
-        }
+    //runs {
+    //    "client" {
+    //        workingDirectory file("./run")
+    //        mods { "${project.name}" { source sourceSets.main } }
+    //    }
 
-        "server" {
-            workingDirectory file("./run/server")
-            mods { "${project.name}" { source sourceSets.main } }
-        }
-    }
+    //    "server" {
+    //        workingDirectory file("./run/server")
+    //        mods { "${project.name}" { source sourceSets.main } }
+    //    }
+    //}
 }
 
 processResources {
@@ -80,7 +80,10 @@ processResources {
             "mod_description"   : findProperty("mod_description"),
             "mod_version"       : findProperty("mod_version"),
             "minecraft_version" : findProperty("minecraft_version"),
-            "mod_author"        : findProperty("mod_author")
+            "mod_author"        : findProperty("mod_author"),
+            "mod_license"       : findProperty("mod_license"),
+            "mod_url"           : findProperty("mod_url"),
+            "mod_logoFile"      : findProperty("mod_logoFile")
         ])
     }
 }
